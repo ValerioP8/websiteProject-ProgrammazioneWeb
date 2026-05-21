@@ -1,6 +1,8 @@
 <?php
 // src/event.php
-class EEvent extends Post {
+require_once 'post.php';
+
+class EEvent extends EPost {
     private int $MAXSUBS;
     private string $uploadDate;
     private string $endDate;

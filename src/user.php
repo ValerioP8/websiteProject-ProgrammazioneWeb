@@ -1,11 +1,29 @@
 <?php
 // src/user.php
+
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
+#[ORM\Table(name: "users")]
 class EUser {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: "integer")]
     private int $id;
+
+    #[ORM\Column(type: "string")]
     private string $username;
+    
+    #[ORM\Column(type: "string")]
     private string $passwordHash;
+
+    #[ORM\Column(type: "string")]
     private string $phoneNumber;
+
+    #[ORM\Column(type: "string")]
     private string $accountType;
+
+    #[ORM\Column(type: "string")]
     private string $email;
 
     // Constructor

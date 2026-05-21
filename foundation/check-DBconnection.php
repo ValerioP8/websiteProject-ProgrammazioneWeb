@@ -30,6 +30,7 @@ try {
         $result = $conn->executeQuery('SELECT 1');
         echo $result->fetchOne();
         echo "\n";
+        //phpinfo();
     } else {
         echo "Impossibile connettersi al database.\n";
     }
