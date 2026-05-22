@@ -1,8 +1,21 @@
 <?php
 // src/image.php
+
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
+#[ORM\Table(name: "images")]
+
 class EImage {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: "integer")]
     private int $id;
+
+    #[ORM\Column(type: "blob")]
     private blob $imgData;
+
+    #[ORM\Column(type: "string")]
     private string $imgFormat;
 
     // Constructor

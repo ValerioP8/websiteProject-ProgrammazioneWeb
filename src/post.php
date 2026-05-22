@@ -1,9 +1,29 @@
 <?php
 // src/post.php
+
+use Doctrine\ORM\Mapping as ORM;
+
+/*
+Same considerations as post.
+*/
+
+#[ORM\Entity]
+#[ORM\InheritanceType('SINGLE_TABLE')]
+#[ORM\DiscriminatorColumn(name: 'dtype', type: 'string')]
+#[ORM\DiscriminatorMap(['post' => EPost::class, 'event' => EEvent::class])]
 class EPost {
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: "integer")]
     private int $id;
+
+    #[ORM\Column(type: "string")]
     private string $postType;
+
+    #[ORM\Column(type: "string")]
     private string $title;
+
+    #[ORM\Column(type: "string")]    
     private string $content;
 
     // Constructor

@@ -3,8 +3,20 @@
 
 use Doctrine\ORM\Mapping as ORM;
 
+/*
+Important: By choosing "SINGLE_TABLE", Doctrine will
+manage the inheritance by storing all the attributes
+in the same table.
+
+A discriminator column is expected to save what kind
+of user is stored in the table.
+*/
+
+
 #[ORM\Entity]
-#[ORM\Table(name: "users")]
+#[ORM\InheritanceType('SINGLE_TABLE')]
+#[ORM\DiscriminatorColumn(name: 'dtype', type: 'string')]
+#[ORM\DiscriminatorMap(['user' => EUser::class, 'creator' => ECreator::class])]
 class EUser {
     #[ORM\Id]
     #[ORM\GeneratedValue]

@@ -1,10 +1,17 @@
 <?php
 // src/creator.php
 require_once 'user.php';
+use Doctrine\ORM\Mapping as ORM;
 
+#[ORM\Entity]
 class ECreator extends EUser {
+    #[ORM\Column(type: 'string', nullable: true)]
     private string $region;
+
+    #[ORM\Column(type: 'string', nullable: true)]
     private string $province;
+
+    #[ORM\Column(type: 'string', nullable: true)]
     private string $city;       //Comune
 
     // Constructor

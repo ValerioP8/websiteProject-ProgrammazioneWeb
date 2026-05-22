@@ -2,9 +2,17 @@
 // src/event.php
 require_once 'post.php';
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
 class EEvent extends EPost {
+    #[ORM\Column(type: "integer")]    
     private int $MAXSUBS;
+
+    #[ORM\Column(type: "string")]
     private string $uploadDate;
+
+    #[ORM\Column(type: "string")]
     private string $endDate;
 
     // Constructor

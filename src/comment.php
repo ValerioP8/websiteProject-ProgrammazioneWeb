@@ -1,8 +1,18 @@
 <?php
 // src/comment.php
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
+#[ORM\Table(name: "comments")]
 class EComment {
+
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: "integer")]
     private int $id;
+
+    #[ORM\Column(type: "string")]
     private string $content;
 
     // Constructor
