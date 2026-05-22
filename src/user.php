@@ -44,10 +44,12 @@ class EUser {
     private string $email;
     
     //RELATIONS
+    //OneToOne relation with EImage.
     #[ORM\OneToOne(targetEntity: EImage::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(name: 'image_id', referencedColumnName: 'id', nullable: true)]
     private ?EImage $image = null;   
 
+    //OneToMany relation with EComment (BIDIRECTIONAL).
     #[ORM\OneToMany(targetEntity: EComment::class, mappedBy: 'user', cascade: ['remove'])]
     private Collection $comments;
 

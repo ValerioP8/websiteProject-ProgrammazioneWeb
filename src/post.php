@@ -35,6 +35,7 @@ class EPost {
     private string $content;
 
     //RELATIONS
+    // OneToOne relation with EImage.
     #[ORM\OneToOne(targetEntity: EImage::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(name: 'image_id', referencedColumnName: 'id', nullable: true)]
     private ?EImage $image = null;    

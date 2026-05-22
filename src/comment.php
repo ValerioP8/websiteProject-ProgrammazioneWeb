@@ -17,6 +17,7 @@ class EComment {
     private string $content;
 
     //RELATIONS
+    // ManyToOne: many comments can be associated with one user. (BIDIRECTIONAL)
     #[ORM\ManyToOne(targetEntity: EUser::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: false)]
     private ?EUser $user = null;
