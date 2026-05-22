@@ -1,5 +1,6 @@
 <?php
-// src/image.php
+// src/Image.php
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

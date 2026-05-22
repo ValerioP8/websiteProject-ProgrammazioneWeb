@@ -1,4 +1,5 @@
 <?php
+namespace App\Entity;
 // src/report.php
 class EReport {
     private int $id;

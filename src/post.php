@@ -1,10 +1,18 @@
 <?php
 // src/post.php
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /*
-Same considerations as post.
+Same considerations as post, about the inheritance.
+*/
+
+/*
+About the relation with image class:
+OneToOne.
+cascade: persist and remove: automatically saves the Image with the associated Event.
+Automatically removes the image if the associated event is deleted.
 */
 
 #[ORM\Entity]
@@ -25,6 +33,11 @@ class EPost {
 
     #[ORM\Column(type: "string")]    
     private string $content;
+
+    //RELATIONS
+    #[ORM\OneToOne(targetEntity: EImage::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'image_id', referencedColumnName: 'id', nullable: true)]
+    private ?EImage $image = null;    
 
     // Constructor
     public function __construct(int $id, string $postType, string $title, string $content) {

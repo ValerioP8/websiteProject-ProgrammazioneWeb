@@ -1,5 +1,6 @@
 <?php
 // src/event.php
+namespace App\Entity;
 require_once 'post.php';
 
 use Doctrine\ORM\Mapping as ORM;

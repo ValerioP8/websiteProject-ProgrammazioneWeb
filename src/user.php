@@ -1,7 +1,12 @@
 <?php
 // src/user.php
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
+use App\Entity\Image;
 
 /*
 Important: By choosing "SINGLE_TABLE", Doctrine will
@@ -37,6 +42,14 @@ class EUser {
 
     #[ORM\Column(type: "string")]
     private string $email;
+    
+    //RELATIONS
+    #[ORM\OneToOne(targetEntity: EImage::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(name: 'image_id', referencedColumnName: 'id', nullable: true)]
+    private ?EImage $image = null;   
+
+    #[ORM\OneToMany(targetEntity: EComment::class, mappedBy: 'user', cascade: ['remove'])]
+    private Collection $comments;
 
     // Constructor
     public function __construct(int $id, string $username, string $passwordHash, string $phoneNumber, string $accountType, string $email) {
@@ -46,6 +59,7 @@ class EUser {
         $this->phoneNumber = $phoneNumber;
         $this->accountType = $accountType;
         $this->email = $email;
+        $this->comments = new ArrayCollection();
     }
 
     // Getters
@@ -92,6 +106,14 @@ class EUser {
 
     public function setEmail(string $email): void {
         $this->email = $email;
+    }
+
+    /**
+     * @return Collection<int, EComment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
     }
 
 

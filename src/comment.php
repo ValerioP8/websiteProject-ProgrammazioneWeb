@@ -1,5 +1,6 @@
 <?php
 // src/comment.php
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,10 +16,16 @@ class EComment {
     #[ORM\Column(type: "string")]
     private string $content;
 
+    //RELATIONS
+    #[ORM\ManyToOne(targetEntity: EUser::class, inversedBy: 'comments')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: false)]
+    private ?EUser $user = null;
+
     // Constructor
-    public function __construct(int $id, string $content) {
+    public function __construct(int $id, string $content, EUser $user) {
         $this->id = $id;
         $this->content = $content;
+        $this->user = $user;
     }
 
     // Getters
@@ -30,9 +37,17 @@ class EComment {
         return $this->content;
     }
 
+    public function getUser(): ?EUser {
+        return $this->user;
+    }
+
     // Setters
     public function setContent(string $content): void {
         $this->content = $content;
+    }
+
+    public function setUser(EUser $user): void {
+        $this->user = $user;
     }
 
 }
