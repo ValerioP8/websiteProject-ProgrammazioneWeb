@@ -16,6 +16,7 @@ Automatically removes the image if the associated event is deleted.
 */
 
 #[ORM\Entity]
+#[ORM\Table(name: "posts")]
 #[ORM\InheritanceType('SINGLE_TABLE')]
 #[ORM\DiscriminatorColumn(name: 'dtype', type: 'string')]
 #[ORM\DiscriminatorMap(['post' => EPost::class, 'event' => EEvent::class])]

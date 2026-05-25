@@ -1,0 +1,3 @@
+php doctrine.php orm:schema-tool:drop --force
+
+php doctrine.php orm:schema-tool:create

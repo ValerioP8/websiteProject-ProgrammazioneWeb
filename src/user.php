@@ -19,6 +19,7 @@ of user is stored in the table.
 
 
 #[ORM\Entity]
+#[ORM\Table(name: "users")]
 #[ORM\InheritanceType('SINGLE_TABLE')]
 #[ORM\DiscriminatorColumn(name: 'dtype', type: 'string')]
 #[ORM\DiscriminatorMap(['user' => EUser::class, 'creator' => ECreator::class])]
