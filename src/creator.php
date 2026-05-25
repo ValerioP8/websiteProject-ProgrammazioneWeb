@@ -17,11 +17,17 @@ class ECreator extends EUser {
     #[ORM\Column(type: 'string', nullable: true)]
     private string $city;       //Comune
 
+    //RELATIONS
+    //OneToMany relation with EPost (BIDIRECTIONAL).
+    #[ORM\OneToMany(mappedBy: 'creator', targetEntity: EPost::class, cascade: ['persist'])]
+    private Collection $posts;
+
     // Constructor
     public function __construct(string $name, string $surname, string $email, string $password, string $region, string $province, string $city) {parent::__construct($name, $surname, $email, $password);
         $this->region = $region;
         $this->province = $province;
         $this->city = $city;
+        $this->posts = new ArrayCollection();
     }
 
     // Getters

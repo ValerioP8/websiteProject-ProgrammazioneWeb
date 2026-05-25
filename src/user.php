@@ -54,6 +54,27 @@ class EUser {
     #[ORM\OneToMany(targetEntity: EComment::class, mappedBy: 'user', cascade: ['remove'])]
     private Collection $comments;
 
+    //ManyToMany relation with EPost (BIDIRECTIONAL) [Liking persistence].
+    #[ORM\ManyToMany(targetEntity: EPost::class, inversedBy: 'likedByUsers')]
+    #[ORM\JoinTable(name: 'users_likes_posts')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    #[ORM\InverseJoinColumn(name: 'post_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    private Collection $likedPosts;
+
+    //ManyToMany Asymmetric self-reference relation.
+    //Followings side.
+    #[ORM\ManyToMany(targetEntity: self::class, inversedBy: 'followers')]
+    #[ORM\JoinTable(name: 'user_follows')]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    #[ORM\InverseJoinColumn(name: 'following_user_id', referencedColumnName: 'id', onDelete: 'CASCADE')]
+    private Collection $following;
+    //Followers side.
+    #[ORM\ManyToMany(targetEntity: self::class, mappedBy: 'following')]
+    private Collection $followers;
+    /*
+    Note: user_id is the Follower, following_user_id is is the followed (by user_id).
+    */
+
     // Constructor
     public function __construct(int $id, string $username, string $passwordHash, string $phoneNumber, string $accountType, string $email) {
         $this->id = $id;
@@ -63,6 +84,9 @@ class EUser {
         $this->accountType = $accountType;
         $this->email = $email;
         $this->comments = new ArrayCollection();
+        $this->likedPosts = new ArrayCollection();
+        $this->following = new ArrayCollection();
+        $this->followers = new ArrayCollection();
     }
 
     // Getters

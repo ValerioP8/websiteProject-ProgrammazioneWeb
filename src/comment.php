@@ -22,6 +22,11 @@ class EComment {
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id', nullable: false)]
     private ?EUser $user = null;
 
+    // ManyToOne relation with EPost (BIDIRECTIONAL).
+    #[ORM\ManyToOne(targetEntity: EPost::class, inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?EPost $post = null;
+
     // Constructor
     public function __construct(int $id, string $content, EUser $user) {
         $this->id = $id;

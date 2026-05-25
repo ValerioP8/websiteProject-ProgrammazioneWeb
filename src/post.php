@@ -39,7 +39,20 @@ class EPost {
     // OneToOne relation with EImage.
     #[ORM\OneToOne(targetEntity: EImage::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(name: 'image_id', referencedColumnName: 'id', nullable: true)]
-    private ?EImage $image = null;    
+    private ?EImage $image = null;
+    
+    //OneToMany relation with EComment (BIDIRECTIONAL).
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: EComment::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    private Collection $comments;
+
+    //ManyToOne relation with ECreator (BIDIRECTIONAL).
+    #[ORM\ManyToOne(targetEntity: ECreator::class, inversedBy: 'posts')]
+    #[ORM\JoinColumn(name: 'creator_id', referencedColumnName: 'id', nullable: false)]
+    private ?ECreator $creator = null;
+
+    //ManyToMany relation with EUser (BIDIRECTIONAL) [Liking persistence].
+    #[ORM\ManyToMany(targetEntity: EUser::class, mappedBy: 'likedPosts')]
+    private Collection $likedByUsers;
 
     // Constructor
     public function __construct(int $id, string $postType, string $title, string $content) {
@@ -47,6 +60,8 @@ class EPost {
         $this->postType = $postType;
         $this->title = $title;
         $this->content = $content;
+        $this->comments = new ArrayCollection();
+        $this->likedByUsers = new ArrayCollection();
     }
 
     // Getters
@@ -64,6 +79,13 @@ class EPost {
 
     public function getContent(): string {
         return $this->content;
+    }
+
+    /**
+     * @return Collection<int, EComment>
+     */
+    public function getComments(): Collection {
+        return $this->comments;
     }
 
     // Setters
