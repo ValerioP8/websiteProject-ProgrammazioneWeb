@@ -3,7 +3,6 @@
 namespace App\Entity;
 use App\Entity\EUser;
 
-require_once 'user.php';
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
