@@ -25,12 +25,12 @@ abstract class EAbstractReport {
     //ManyToOne relation with EUser (author of the report)
     #[ORM\ManyToOne(targetEntity: EUser::class)]
     #[ORM\JoinColumn(name: 'author_id', referencedColumnName: 'id', nullable: false)]
-    protected EUser $author;
+    private EUser $author;
 
     // Constructor
-    public function __construct(int $id, string $reportType, string $content) {
+    public function __construct(int $id, string $reportSubtype, string $content) {
         $this->id = $id;
-        $this->reportType = $reportType;
+        $this->reportSubtype = $reportSubtype;
         $this->content = $content;
     }
 
@@ -39,8 +39,8 @@ abstract class EAbstractReport {
         return $this->id;
     }
 
-    public function getReportType(): string {
-        return $this->reportType;
+    public function getReportSubtype(): string {
+        return $this->reportSubtype;
     }
 
     public function getContent(): string {
@@ -48,8 +48,8 @@ abstract class EAbstractReport {
     }
 
     // Setters
-    public function setReportType(string $reportType): void {
-        $this->reportType = $reportType;
+    public function setReportSubtype(string $reportSubtype): void {
+        $this->reportSubtype = $reportSubtype;
     }
 
     public function setContent(string $content): void {
