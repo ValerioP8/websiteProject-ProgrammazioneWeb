@@ -1,7 +1,6 @@
 <?php
 namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
-// src/abstractReport.php
 
 //Abstract class: There will be 3 extentions {EUserReport, EPostReport, ECommentReport}
 #[ORM\Entity]
