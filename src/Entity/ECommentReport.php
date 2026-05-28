@@ -2,7 +2,6 @@
 namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 // src/commentReport.php
-use App\Entity\EAbstractReport;
 
 #[ORM\Entity]
 class ECommentReport extends EAbstractReport {

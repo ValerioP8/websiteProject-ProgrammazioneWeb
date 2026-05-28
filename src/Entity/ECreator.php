@@ -1,8 +1,6 @@
 <?php
 // src/creator.php
 namespace App\Entity;
-use App\Entity\EUser;
-
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
