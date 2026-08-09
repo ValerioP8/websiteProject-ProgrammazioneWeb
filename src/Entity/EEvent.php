@@ -25,10 +25,12 @@ class EEvent extends EPost {
      * @param string $uploadDate
      * @param string $endDate
      */
-    public function __construct(int $id, string $postType, string $title, string $content, int $MAXSUBS, string $uploadDate, string $endDate) {parent::__construct($id, $postType, $title, $content);
+    public function __construct(int $id, string $title, string $content, EImage $image = null, ECreator $creator, int $MAXSUBS, string $uploadDate, string $endDate) {parent::__construct($id, $title, $content, $image, $creator);
             $this->MAXSUBS = $MAXSUBS;
             $this->uploadDate = $uploadDate;
             $this->endDate = $endDate;
+            $this->image = $image;
+            $this->creator = $creator;
     }
 
     // Getters

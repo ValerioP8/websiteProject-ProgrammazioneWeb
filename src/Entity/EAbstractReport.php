@@ -27,10 +27,11 @@ abstract class EAbstractReport {
     private EUser $author;
 
     // Constructor
-    public function __construct(int $id, string $reportSubtype, string $content) {
+    public function __construct(int $id, string $reportSubtype, string $content, EUser $author) {
         $this->id = $id;
         $this->reportSubtype = $reportSubtype;
         $this->content = $content;
+        $this->author = $author;
     }
 
     // Getters

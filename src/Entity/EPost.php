@@ -28,9 +28,6 @@ class EPost {
     private int $id;
 
     #[ORM\Column(type: "string")]
-    private string $postType;
-
-    #[ORM\Column(type: "string")]
     private string $title;
 
     #[ORM\Column(type: "string")]    
@@ -58,15 +55,13 @@ class EPost {
     // Constructor
     /**
      * @param int $id
-     * @param string $postType
      * @param string $title
      * @param string $content
      * @param EImage|null $image
      * @param ECreator $creator
      */
-    public function __construct(int $id, string $postType, string $title, string $content, EImage $image = null, ECreator $creator) {
+    public function __construct(int $id, string $title, string $content, EImage $image = null, ECreator $creator) {
         $this->id = $id;
-        $this->postType = $postType;
         $this->title = $title;
         $this->content = $content;
         $this->image = $image;

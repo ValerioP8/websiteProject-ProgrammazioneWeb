@@ -13,7 +13,7 @@ class EImage {
     private int $id;
 
     #[ORM\Column(type: "blob")]
-    private blob $imgData;
+    private $imgData;
 
     #[ORM\Column(type: "string")]
     private string $imgFormat;
@@ -21,10 +21,10 @@ class EImage {
     // Constructor
     /**
      * @param int $id
-     * @param blob $imgData
+     * @param $imgData
      * @param string $imgFormat
      */
-    public function __construct(int $id, blob $imgData, string $imgFormat){
+    public function __construct(int $id, $imgData, string $imgFormat){
         $this->id = $id;
         $this->imgData = $imgData;
         $this->imgFormat = $imgFormat;
@@ -35,7 +35,7 @@ class EImage {
         return $this->id;
     }
 
-    public function getImgData(): blob {
+    public function getImgData(){
         return $this->imgData;
     }
 
@@ -44,7 +44,7 @@ class EImage {
     }
 
     // Setters
-    public function setImgData(blob $imgData): void {
+    public function setImgData($imgData): void {
         $this->imgData = $imgData;
     }
 

@@ -87,6 +87,7 @@ class EUser {
         $this->likedPosts = new ArrayCollection();
         $this->following = new ArrayCollection();
         $this->followers = new ArrayCollection();
+        $this->image = null;
     }
 
     // Getters

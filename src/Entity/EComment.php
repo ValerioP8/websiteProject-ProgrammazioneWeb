@@ -31,11 +31,13 @@ class EComment {
      * @param int $id "Put 0 for NEW comments, the DB will generate it."
      * @param string $content
      * @param EUser $user
+     * @param EPost $post
      */
-    public function __construct(int $id, string $content, EUser $user) {
+    public function __construct(int $id, string $content, EUser $user, EPost $post) {
         $this->id = $id;
         $this->content = $content;
         $this->user = $user;
+        $this->post = $post;
     }
 
     // Getters
@@ -45,6 +47,10 @@ class EComment {
 
     public function getContent(): string {
         return $this->content;
+    }
+
+    public function getPost(): ?EPost {
+        return $this->post;
     }
 
     public function getUser(): ?EUser {

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 class EUserReport extends EAbstractReport {
     // Target User
     #[ORM\ManyToOne(targetEntity: EUser::class)]
-    #[ORM\JoinColumn(name: 'reported_user_id', referencedColumnName: 'id', nullable: false)]
+    #[ORM\JoinColumn(name: 'reported_user_id', referencedColumnName: 'id', nullable: true)]
     private EUser $reportedUser;
 
     // Constructor
@@ -16,8 +16,8 @@ class EUserReport extends EAbstractReport {
      * @param string $content
      * @param EUser $reportedUser
      */
-    public function __construct(int $id, string $reportSubtype, string $content, EUser $reportedUser) {
-        parent::__construct($id, $reportSubtype, $content);
+    public function __construct(int $id, string $reportSubtype, string $content, EUser $reporter, EUser $reportedUser) {
+        parent::__construct($id, $reportSubtype, $content, $reporter);
         $this->reportedUser = $reportedUser;
     }
 
