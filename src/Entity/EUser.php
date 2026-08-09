@@ -73,6 +73,14 @@ class EUser {
     */
 
     // Constructor
+    /**
+     * @param int $id "Put 0 for NEW users, the DB will generate it."
+     * @param string $username
+     * @param string $passwordHash
+     * @param string $phoneNumber
+     * @param string $accountType
+     * @param string $email
+     */
     public function __construct(int $id, string $username, string $passwordHash, string $phoneNumber, string $accountType, string $email) {
         $this->id = $id;
         $this->username = $username;

@@ -16,6 +16,15 @@ class EEvent extends EPost {
 
     // Constructor
     // Expected date format: "dd/mm/yyyy"
+    /**
+     * @param int $id "Put 0 for NEW events, the DB will generate it."
+     * @param string $postType
+     * @param string $title
+     * @param string $content
+     * @param int $MAXSUBS
+     * @param string $uploadDate
+     * @param string $endDate
+     */
     public function __construct(int $id, string $postType, string $title, string $content, int $MAXSUBS, string $uploadDate, string $endDate) {parent::__construct($id, $postType, $title, $content);
             $this->MAXSUBS = $MAXSUBS;
             $this->uploadDate = $uploadDate;

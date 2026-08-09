@@ -19,6 +19,11 @@ class EImage {
     private string $imgFormat;
 
     // Constructor
+    /**
+     * @param int $id
+     * @param blob $imgData
+     * @param string $imgFormat
+     */
     public function __construct(int $id, blob $imgData, string $imgFormat){
         $this->id = $id;
         $this->imgData = $imgData;

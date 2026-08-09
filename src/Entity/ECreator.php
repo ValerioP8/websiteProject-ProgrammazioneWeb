@@ -21,6 +21,15 @@ class ECreator extends EUser {
     private Collection $posts;
 
     // Constructor
+    /**
+     * @param string $name
+     * @param string $surname
+     * @param string $email
+     * @param string $password
+     * @param string $region
+     * @param string $province
+     * @param string $city
+     */
     public function __construct(string $name, string $surname, string $email, string $password, string $region, string $province, string $city) {parent::__construct($name, $surname, $email, $password);
         $this->region = $region;
         $this->province = $province;

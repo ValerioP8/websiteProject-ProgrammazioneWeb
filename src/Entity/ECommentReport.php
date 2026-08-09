@@ -10,6 +10,12 @@ class ECommentReport extends EAbstractReport {
     private EComment $reportedComment;
 
     // Constructor
+    /**
+     * @param int $id
+     * @param string $reportSubtype
+     * @param string $content
+     * @param EComment $reportedComment
+     */
     public function __construct(int $id, string $reportSubtype, string $content, EComment $reportedComment) {
         parent::__construct($id, $reportSubtype, $content);
         $this->reportedComment = $reportedComment;

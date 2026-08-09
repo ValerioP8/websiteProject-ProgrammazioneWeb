@@ -10,6 +10,12 @@ class EUserReport extends EAbstractReport {
     private EUser $reportedUser;
 
     // Constructor
+    /**
+     * @param int $id
+     * @param string $reportSubtype
+     * @param string $content
+     * @param EUser $reportedUser
+     */
     public function __construct(int $id, string $reportSubtype, string $content, EUser $reportedUser) {
         parent::__construct($id, $reportSubtype, $content);
         $this->reportedUser = $reportedUser;

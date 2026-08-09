@@ -10,6 +10,12 @@ class EPostReport extends EAbstractReport {
     private EPost $reportedPost;
 
     // Constructor
+    /**
+     * @param int $id
+     * @param string $reportSubtype
+     * @param string $content
+     * @param EPost $reportedPost
+     */
     public function __construct(int $id, string $reportSubtype, string $content, EPost $reportedPost) {
         parent::__construct($id, $reportSubtype, $content);
         $this->reportedPost = $reportedPost;

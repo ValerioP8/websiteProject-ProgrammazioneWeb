@@ -27,6 +27,11 @@ class EComment {
     private ?EPost $post = null;
 
     // Constructor
+    /**
+     * @param int $id "Put 0 for NEW comments, the DB will generate it."
+     * @param string $content
+     * @param EUser $user
+     */
     public function __construct(int $id, string $content, EUser $user) {
         $this->id = $id;
         $this->content = $content;

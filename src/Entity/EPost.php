@@ -56,6 +56,12 @@ class EPost {
     private Collection $likedByUsers;
 
     // Constructor
+    /**
+     * @param int $id
+     * @param string $postType
+     * @param string $title
+     * @param string $content
+     */
     public function __construct(int $id, string $postType, string $title, string $content) {
         $this->id = $id;
         $this->postType = $postType;
