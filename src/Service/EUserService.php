@@ -32,7 +32,7 @@ class EUserService {
 
     // Generate a test user in DB
     public function generateTestUser(): int {
-        $user = new EUser(0,"TestUser","1234","+39 1234567890","creator","test@gmail.com");
+        $user = new EUser(0,"TestUser","1234","+39 1234567890","test@gmail.com");
         $this->entityManager->persist($user);         //Update in buffer
         $this->entityManager->flush();              //Commit in DB
         return 1;

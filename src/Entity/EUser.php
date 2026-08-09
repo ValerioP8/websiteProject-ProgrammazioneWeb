@@ -36,9 +36,6 @@ class EUser {
     private string $phoneNumber;
 
     #[ORM\Column(type: "string")]
-    private string $accountType;
-
-    #[ORM\Column(type: "string")]
     private string $email;
     
     //RELATIONS
@@ -78,15 +75,13 @@ class EUser {
      * @param string $username
      * @param string $passwordHash
      * @param string $phoneNumber
-     * @param string $accountType
      * @param string $email
      */
-    public function __construct(int $id, string $username, string $passwordHash, string $phoneNumber, string $accountType, string $email) {
+    public function __construct(int $id, string $username, string $passwordHash, string $phoneNumber, string $email) {
         $this->id = $id;
         $this->username = $username;
         $this->passwordHash = $passwordHash;
         $this->phoneNumber = $phoneNumber;
-        $this->accountType = $accountType;
         $this->email = $email;
         $this->comments = new ArrayCollection();
         $this->likedPosts = new ArrayCollection();

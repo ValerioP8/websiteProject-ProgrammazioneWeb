@@ -22,15 +22,16 @@ class ECreator extends EUser {
 
     // Constructor
     /**
-     * @param string $name
-     * @param string $surname
+     * @param int $id "Put 0 for NEW users, the DB will generate it."
+     * @param string $username
+     * @param string $passwordHash
+     * @param string $phoneNumber
      * @param string $email
-     * @param string $password
      * @param string $region
      * @param string $province
      * @param string $city
      */
-    public function __construct(string $name, string $surname, string $email, string $password, string $region, string $province, string $city) {parent::__construct($name, $surname, $email, $password);
+    public function __construct(int $id, string $username, string $passwordHash, string $phoneNumber, string $email, string $region, string $province, string $city) {parent::__construct($id, $username, $passwordHash, $phoneNumber, $email);
         $this->region = $region;
         $this->province = $province;
         $this->city = $city;
