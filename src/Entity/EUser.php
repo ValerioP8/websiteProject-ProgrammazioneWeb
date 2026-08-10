@@ -144,7 +144,7 @@ class EUser {
         return $this->comments;
     }
 
-    // Liking functions
+    // Liking functions -----------
     // Add like if not liked
     public function addLikeTo(EPost $post): void{
         if (!$this->likedPosts->contains($post)) {
@@ -160,6 +160,19 @@ class EUser {
     // Check if liked
     public function isLiked(EPost $post): bool{
         return $this->likedPosts->contains($post);
+    }
+
+    //Following functions -----------
+    // Follow a user
+    public function follow(ECreator $creator): void{
+        if (!$this->following->contains($creator)) {
+            $this->following->add($creator);
+        }
+    }
+
+    // Unfollow a user
+    public function unfollow(ECreator $creator): void{
+        $this->following->removeElement($creator);
     }
 
 }

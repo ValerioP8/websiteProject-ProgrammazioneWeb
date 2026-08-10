@@ -10,6 +10,7 @@ use App\Service\EImageService;
 use App\Service\EPostService;
 use App\Service\EUserService;
 use App\Service\ReportHandlingService;
+use App\Service\AbstractBaseService;
 
 //Entities
 use App\Entity\EComment;
@@ -80,7 +81,9 @@ $ReportHandlingService->persistUserReport($reportUser);
 $ReportHandlingService->persistPostReport($reportPost);
 
 //Liking test
+$EUserService->like($user,$post);
 
-
+//Following test
+$EUserService->follow($user,$creator);
 
 
