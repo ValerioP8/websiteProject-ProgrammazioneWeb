@@ -39,4 +39,9 @@ class EUserService extends AbstractBaseService {
         $this->persist($user);
     }
 
+    //Verify
+    public function verifyPassword(EUser $user, string $password): bool{
+        return password_verify($password, $user->getPasswordHash());
+    }
+
 }

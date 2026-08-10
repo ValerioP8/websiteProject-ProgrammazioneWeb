@@ -59,7 +59,7 @@ rewind($blob1);
 
 $image = new EImage(0,$blob,"png");
 $image1 = new EImage(0,$blob1,"jpg");
-$user = new EUser(0,"TestName","TestPasswordHash","TestPhoneNumber","TestEmail");
+$user = new EUser(0,"TestName",password_hash("TestPasswordHash", PASSWORD_DEFAULT),"TestPhoneNumber","TestEmail");
 $creator = new ECreator(0,"TestCreator","TestPasswordHash","TestPhoneNumber","TestEmail","Region","Province","City");
 $post = new EPost(0,"TestTitle","TestDescription",$image,$creator);
 $event = new EEvent(0,"TestTitle","TestDescription",$image1,$creator,20,"10/10/10","11/10/10");
@@ -85,5 +85,15 @@ $EUserService->like($user,$post);
 
 //Following test
 $EUserService->follow($user,$creator);
+
+//Read test
+$readUser = $EUserService->getById(EUser::class,$user->getId());
+if ($readUser !== null) {
+    echo "ID: " . $readUser->getId() . "\n";
+    echo "Username: " . $readUser->getUsername() . "\n";
+    echo "Password Hash: " . $readUser->getPasswordHash() . "\n";
+    echo "Verification: " . ($EUserService->verifyPassword($readUser, "TestPasswordHash") ? "Success" : "Failure") . "\n";
+    echo "Email: " . $readUser->getEmail() . "\n";
+}
 
 
