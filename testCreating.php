@@ -69,15 +69,15 @@ $reportUser = new EUserReport(0,"subtype","content",$user,$creator);
 $reportPost = new EPostReport(0,"subtype","content",$creator,$post);
 
 //DB interaction
-$EImageService->createImage($image);
-$EUserService->createUser($user);
-$ECreatorService->createCreator($creator);
-$EPostService->createPost($post);
-$EEventService->createEvent($event);
-$ECommentService->createComment($comment);
-$ReportHandlingService->createCommentReport($reportComment);
-$ReportHandlingService->createUserReport($reportUser);
-$ReportHandlingService->createPostReport($reportPost);
+$EImageService->persist($image);
+$EUserService->persist($user);
+$ECreatorService->persist($creator);
+$EPostService->persist($post);
+$EEventService->persist($event);
+$ECommentService->persist($comment);
+$ReportHandlingService->persistCommentReport($reportComment);
+$ReportHandlingService->persistUserReport($reportUser);
+$ReportHandlingService->persistPostReport($reportPost);
 
 
 

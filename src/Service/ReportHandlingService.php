@@ -21,21 +21,21 @@ class ReportHandlingService
 
     //Report creation methods
     //User
-    public function createUserReport(EUserReport $userReport): EUserReport{
+    public function persistUserReport(EUserReport $userReport): EUserReport{
         $this->entityManager->persist($userReport);
         $this->entityManager->flush();
         return $userReport;
     }
 
     //Post
-    public function createPostReport(EPostReport $postReport): EPostReport{
+    public function persistPostReport(EPostReport $postReport): EPostReport{
         $this->entityManager->persist($postReport);
         $this->entityManager->flush();
         return $postReport;
     }
 
     //Comment
-    public function createCommentReport(ECommentReport $commentReport): ECommentReport{
+    public function persistCommentReport(ECommentReport $commentReport): ECommentReport{
         $this->entityManager->persist($commentReport);
         $this->entityManager->flush();
         return $commentReport;
