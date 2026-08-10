@@ -1,6 +1,7 @@
 <?php
+namespace App\Service;
 
-class SessionService {
+class SessionManager {
     public function __construct() {
         // Start session with secure settings if not already started
         if (session_status() === PHP_SESSION_NONE) {

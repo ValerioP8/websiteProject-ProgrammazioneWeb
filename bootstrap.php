@@ -24,3 +24,7 @@ $config = ORMSetup::createAttributeMetadataConfiguration(
 // on PHP < 8.4, use ORMSetup::createAttributeMetadataConfiguration() instead
 $connection = DriverManager::getConnection($dbParams, $config);
 $entityManager = new EntityManager($connection, $config);
+
+//Session manager bootstrap
+use App\Service\SessionManager;
+$sessionManager = new SessionManager();
