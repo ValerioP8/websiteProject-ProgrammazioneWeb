@@ -5,7 +5,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 /*
     Common functions for all services must go here due to DRY.
-
+    Linked to every service except ReportHandlingService.
 */
 
 abstract class AbstractBaseService {

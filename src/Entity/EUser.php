@@ -144,5 +144,22 @@ class EUser {
         return $this->comments;
     }
 
+    // Liking functions
+    // Add like if not liked
+    public function addLikeTo(EPost $post): void{
+        if (!$this->likedPosts->contains($post)) {
+            $this->likedPosts->add($post);
+        }
+    }
+
+    // Remove like
+    public function removeLikeFrom(EPost $post): void{
+        $this->likedPosts->removeElement($post);
+    }
+
+    // Check if liked
+    public function isLiked(EPost $post): bool{
+        return $this->likedPosts->contains($post);
+    }
 
 }

@@ -79,6 +79,8 @@ $ReportHandlingService->persistCommentReport($reportComment);
 $ReportHandlingService->persistUserReport($reportUser);
 $ReportHandlingService->persistPostReport($reportPost);
 
+//Liking test
+
 
 
 
