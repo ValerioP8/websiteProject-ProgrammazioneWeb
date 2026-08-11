@@ -59,8 +59,8 @@ rewind($blob1);
 
 $image = new EImage(0,$blob,"png");
 $image1 = new EImage(0,$blob1,"jpg");
-$user = new EUser(0,"TestName",password_hash("TestPasswordHash", PASSWORD_DEFAULT),"TestPhoneNumber","TestEmail");
-$creator = new ECreator(0,"TestCreator","TestPasswordHash","TestPhoneNumber","TestEmail","Region","Province","City");
+$user = new EUser(0,"TestName",password_hash("TestPasswordHash", PASSWORD_DEFAULT),"TestPhoneNumber","TestEmail1");
+$creator = new ECreator(0,"TestCreator","TestPasswordHash","TestPhoneNumber","TestEmail2","Region","Province","City");
 $post = new EPost(0,"TestTitle","TestDescription",$image,$creator);
 $event = new EEvent(0,"TestTitle","TestDescription",$image1,$creator,20,"10/10/10","11/10/10");
 $comment = new EComment(0,"TestComment",$user,$post);

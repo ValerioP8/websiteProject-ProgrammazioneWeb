@@ -44,4 +44,32 @@ class EUserService extends AbstractBaseService {
         return password_verify($password, $user->getPasswordHash());
     }
 
+    //Utility
+    public function getByUsername(string $username): ?EUser{
+        return $this->entityManager->getRepository(EUser::class)->findOneBy(['username' => $username]);
+    }
+
+    public function getByEmail(string $email): ?EUser{
+        return $this->entityManager->getRepository(EUser::class)->findOneBy(['email' => $email]);
+    }
+
+    public function isUsernameTaken(string $username): bool{
+        return $this->getByUsername($username) !== null;
+    }
+
+    public function isEmailTaken(string $email): bool{
+        return $this->getByEmail($email) !== null;
+    }
+
+    public function getByPhonenumber(string $phoneNumber): ?EUser{
+        return $this->entityManager->getRepository(EUser::class)->findOneBy(['phoneNumber' => $phoneNumber]);
+    }
+
+    public function isPhonenumberTaken(string $phoneNumber): bool{
+        return $this->getByPhonenumber($phoneNumber) !== null;
+    }
+
+    
+
+
 }

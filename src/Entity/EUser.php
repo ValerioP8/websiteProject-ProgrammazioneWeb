@@ -26,16 +26,16 @@ class EUser {
     #[ORM\Column(type: "integer")]
     private int $id;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", unique: true)] //Note: Unique constraint for username, automatically adds an index for it.
     private string $username;
     
     #[ORM\Column(type: "string")]
     private string $passwordHash;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", unique: true, nullable: true)] // Unique and not necessary.
     private string $phoneNumber;
 
-    #[ORM\Column(type: "string")]
+    #[ORM\Column(type: "string", unique: true)] //Note: Unique constraint for email, same as username.
     private string $email;
     
     //RELATIONS

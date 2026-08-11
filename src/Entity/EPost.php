@@ -21,6 +21,7 @@ Automatically removes the image if the associated event is deleted.
 #[ORM\InheritanceType('SINGLE_TABLE')]
 #[ORM\DiscriminatorColumn(name: 'dtype', type: 'string')]
 #[ORM\DiscriminatorMap(['post' => EPost::class, 'event' => EEvent::class])]
+#[ORM\Index(name: 'idx_posts_search', columns: ['title', 'content'], flags: ['fulltext'])] //Add Fulltext Index for title and content search
 class EPost {
     #[ORM\Id]
     #[ORM\GeneratedValue]
