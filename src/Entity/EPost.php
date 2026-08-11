@@ -1,6 +1,8 @@
 <?php
 namespace App\Entity;
 
+use App\Repository\EPostRepository;
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,7 +18,7 @@ cascade: persist and remove: automatically saves the Image with the associated E
 Automatically removes the image if the associated event is deleted.
 */
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: EPostRepository::class)] // Specify the repository class for EPost
 #[ORM\Table(name: "posts")]
 #[ORM\InheritanceType('SINGLE_TABLE')]
 #[ORM\DiscriminatorColumn(name: 'dtype', type: 'string')]

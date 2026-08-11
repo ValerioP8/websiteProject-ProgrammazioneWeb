@@ -23,12 +23,16 @@ use App\Entity\EPostReport;
 use App\Entity\EUser;
 use App\Entity\EUserReport;
 
+//Repos
+use App\Repository\EPostRepository;
+$EPostRepository = $entityManager->getRepository(EPost::class);
+
 //Services startup (EntityManager injection)
 $ECommentService = new ECommentService($entityManager);
 $ECreatorService = new ECreatorService($entityManager);
 $EEventService = new EEventService($entityManager);
 $EImageService = new EImageService($entityManager);
-$EPostService = new EPostService($entityManager);
+$EPostService = new EPostService($entityManager,$EPostRepository);
 $EUserService = new EUserService($entityManager);
 $ReportHandlingService = new ReportHandlingService($entityManager);
 
@@ -59,9 +63,9 @@ rewind($blob1);
 
 $image = new EImage(0,$blob,"png");
 $image1 = new EImage(0,$blob1,"jpg");
-$user = new EUser(0,"TestName",password_hash("TestPasswordHash", PASSWORD_DEFAULT),"TestPhoneNumber","TestEmail1");
-$creator = new ECreator(0,"TestCreator","TestPasswordHash","TestPhoneNumber","TestEmail2","Region","Province","City");
-$post = new EPost(0,"TestTitle","TestDescription",$image,$creator);
+$user = new EUser(0,"TestName",password_hash("TestPasswordHash", PASSWORD_DEFAULT),"TestPhoneNumber1","TestEmail1");
+$creator = new ECreator(0,"TestCreator","TestPasswordHash","TestPhoneNumber2","TestEmail2","Region","Province","City");
+$post = new EPost(0,"JustTitle","JustDescription",$image,$creator);
 $event = new EEvent(0,"TestTitle","TestDescription",$image1,$creator,20,"10/10/10","11/10/10");
 $comment = new EComment(0,"TestComment",$user,$post);
 
@@ -95,5 +99,17 @@ if ($readUser !== null) {
     echo "Verification: " . ($EUserService->verifyPassword($readUser, "TestPasswordHash") ? "Success" : "Failure") . "\n";
     echo "Email: " . $readUser->getEmail() . "\n";
 }
+
+//Search test
+$searchResults = $EPostService->findAffinedPosts("Test");
+if (!empty($searchResults)) {
+    echo "Search Results:\n";
+    foreach ($searchResults as $result) {
+        echo "ID: " . $result->getId() . ", Title: " .$result->getTitle() . ", Content: " . $result->getContent() . "\n";
+    }
+} 
+else {
+    echo "No search results found.\n";
+}   
 
 
