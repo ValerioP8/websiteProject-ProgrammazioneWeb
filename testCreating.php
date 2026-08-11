@@ -28,10 +28,12 @@ use App\Repository\EPostRepository;
 $EPostRepository = $entityManager->getRepository(EPost::class);
 use App\Repository\EUserRepository;
 $EUserRepository = $entityManager->getRepository(EUser::class);
+use App\Repository\ECreatorRepository;
+$ECreatorRepository = $entityManager->getRepository(ECreator::class);
 
 //Services startup (EntityManager injection)
 $ECommentService = new ECommentService($entityManager);
-$ECreatorService = new ECreatorService($entityManager);
+$ECreatorService = new ECreatorService($entityManager,$ECreatorRepository);
 $EEventService = new EEventService($entityManager);
 $EImageService = new EImageService($entityManager);
 $EPostService = new EPostService($entityManager,$EPostRepository);
@@ -107,7 +109,7 @@ $searchResults = $EPostService->searchByFULLTEXT("Test");
 if (!empty($searchResults)) {
     echo "Search Results POSTS:\n";
     foreach ($searchResults as $result) {
-        echo "ID: " . $result->getId() . ", Title: " .$result->getTitle() . ", Content: " . $result->getContent() . "\n";
+        echo "pID: " . $result->getId() . ", Title: " .$result->getTitle() . ", Content: " . $result->getContent() . "\n";
     }
 } 
 else {
@@ -119,9 +121,27 @@ $searchResults2 = $EUserService->searchByUsername("TestCrea");
 if (!empty($searchResults2)) {
     echo "Search Results USERS:\n";
     foreach ($searchResults2 as $result) {
-        echo "ID: " . $result->getId() . "\n";
+        echo "uID: " . $result->getId() . "\n";
     }
 } 
 else {
     echo "No USERS results found.\n";
+}  
+
+//Search Creators
+$creatorTARG = new ECreator(0,"TARGET","TestPasswordHash","TestPhoneNumberssss","TestEmail2sss","Region","Province","City");
+$userTARG = new EUser(0,"TARGET1",password_hash("TestPasswordHash", PASSWORD_DEFAULT),"TestPhsacsaoneNumber1","TestEdsadsamail1");
+
+$EUserService->persist($userTARG);
+$ECreatorService->persist($creatorTARG);
+
+$searchResults3 = $ECreatorService->searchByUsername("TARG");
+if (!empty($searchResults3)) {
+    echo "Search Results CREATORS:\n";
+    foreach ($searchResults3 as $result) {
+        echo "cID: " . $result->getId() . "\n";
+    }
+} 
+else {
+    echo "No CREATORS results found.\n";
 }  

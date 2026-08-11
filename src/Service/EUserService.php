@@ -87,5 +87,4 @@ class EUserService extends AbstractBaseService {
         return $this->userRepository->searchByUsername($cleanQuery);
     }
 
-
 }

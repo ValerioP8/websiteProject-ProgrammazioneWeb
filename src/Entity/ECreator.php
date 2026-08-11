@@ -4,7 +4,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-#[ORM\Entity]
+use App\Repository\ECreatorRepository;
+
+#[ORM\Entity(repositoryClass: ECreatorRepository::class)]
 class ECreator extends EUser {
     #[ORM\Column(type: 'string', nullable: true)]
     private string $region;
@@ -63,5 +65,7 @@ class ECreator extends EUser {
     public function setCity(string $city): void {
         $this->city = $city;
     }
+
+
 
 }
