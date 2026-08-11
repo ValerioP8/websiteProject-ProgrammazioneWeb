@@ -70,6 +70,27 @@ class EUser {
     Note: user_id is the Follower, following_user_id is is the followed (by user_id).
     */
 
+    //Moderator relation by COMPOSITION--------------
+    #[ORM\OneToOne(targetEntity: EModerator::class, mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?EModerator $moderatorProfile = null;
+
+    public function getModeratorProfile(): ?EModerator{
+    return $this->moderatorProfile;
+    }
+
+    public function setModeratorProfile(?EModerator $moderatorProfile): void{
+    $this->moderatorProfile = $moderatorProfile;
+    
+    // sync
+    if ($moderatorProfile !== null && $moderatorProfile->getUser() !== $this) {
+        $moderatorProfile->setUser($this);
+    }
+    }
+
+    //-----------------
+
+
+
     // Constructor
     /**
      * @param int $id "Put 0 for NEW users, the DB will generate it."

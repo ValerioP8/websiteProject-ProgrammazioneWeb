@@ -145,3 +145,5 @@ if (!empty($searchResults3)) {
 else {
     echo "No CREATORS results found.\n";
 }  
+
+$EUserService->promote($userTARG);

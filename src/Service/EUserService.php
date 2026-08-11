@@ -4,6 +4,7 @@ namespace App\Service;
 use App\Entity\EUser;
 use App\Entity\ECreator;
 use App\Entity\EPost;
+use App\Entity\EModerator;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\EUserRepository;
 
@@ -85,6 +86,24 @@ class EUserService extends AbstractBaseService {
             return [];
         }
         return $this->userRepository->searchByUsername($cleanQuery);
+    }
+
+    //Moderator promotion
+    public function promote(EUser $user): EModerator{
+        // Check if already moderator
+        if ($user->getModeratorProfile() !== null) {
+            throw new \LogicException("L'utente con ID {$user->getId()} è già un moderatore.");
+        }
+
+        $moderator = new EModerator();
+
+        //Promotion function
+        $user->setModeratorProfile($moderator);
+
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+
+        return $moderator;
     }
 
 }
