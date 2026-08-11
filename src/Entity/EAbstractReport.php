@@ -23,7 +23,7 @@ abstract class EAbstractReport {
     //RELATIONS
     //ManyToOne relation with EUser (author of the report)
     #[ORM\ManyToOne(targetEntity: EUser::class)]
-    #[ORM\JoinColumn(name: 'author_id', referencedColumnName: 'id', nullable: false)]
+    #[ORM\JoinColumn(name: 'author_id', referencedColumnName: 'id', nullable: false, onDelete: 'CASCADE')]
     private EUser $author;
 
     // Constructor

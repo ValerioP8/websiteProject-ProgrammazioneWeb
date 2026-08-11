@@ -11,6 +11,7 @@ use App\Service\EPostService;
 use App\Service\EUserService;
 use App\Service\ReportHandlingService;
 use App\Service\AbstractBaseService;
+use App\Service\EModeratorService;
 
 //Entities
 use App\Entity\EComment;
@@ -22,6 +23,7 @@ use App\Entity\EPost;
 use App\Entity\EPostReport;
 use App\Entity\EUser;
 use App\Entity\EUserReport;
+use App\Entity\Eblacklist;
 
 //Repos
 use App\Repository\EPostRepository;
@@ -39,6 +41,7 @@ $EImageService = new EImageService($entityManager);
 $EPostService = new EPostService($entityManager,$EPostRepository);
 $EUserService = new EUserService($entityManager,$EUserRepository);
 $ReportHandlingService = new ReportHandlingService($entityManager);
+$EModeratorService = new EModeratorService($entityManager);
 
 //TEST-------------------------
 
@@ -147,3 +150,4 @@ else {
 }  
 
 $EUserService->promote($userTARG);
+$EModeratorService->banAndDestroy($user); //ID:1

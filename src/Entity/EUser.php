@@ -46,7 +46,7 @@ class EUser {
     private ?EImage $image = null;   
 
     //OneToMany relation with EComment (BIDIRECTIONAL).
-    #[ORM\OneToMany(targetEntity: EComment::class, mappedBy: 'user', cascade: ['remove'])]
+    #[ORM\OneToMany(targetEntity: EComment::class, mappedBy: 'user', cascade: ['remove'], orphanRemoval: true)]
     private Collection $comments;
 
     //ManyToMany relation with EPost (BIDIRECTIONAL) [Liking persistence].
