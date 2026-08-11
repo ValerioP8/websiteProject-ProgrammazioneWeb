@@ -26,6 +26,8 @@ use App\Entity\EUserReport;
 //Repos
 use App\Repository\EPostRepository;
 $EPostRepository = $entityManager->getRepository(EPost::class);
+use App\Repository\EUserRepository;
+$EUserRepository = $entityManager->getRepository(EUser::class);
 
 //Services startup (EntityManager injection)
 $ECommentService = new ECommentService($entityManager);
@@ -33,7 +35,7 @@ $ECreatorService = new ECreatorService($entityManager);
 $EEventService = new EEventService($entityManager);
 $EImageService = new EImageService($entityManager);
 $EPostService = new EPostService($entityManager,$EPostRepository);
-$EUserService = new EUserService($entityManager);
+$EUserService = new EUserService($entityManager,$EUserRepository);
 $ReportHandlingService = new ReportHandlingService($entityManager);
 
 //TEST-------------------------
@@ -100,16 +102,26 @@ if ($readUser !== null) {
     echo "Email: " . $readUser->getEmail() . "\n";
 }
 
-//Search test
-$searchResults = $EPostService->findAffinedPosts("Test");
+//Search Post test
+$searchResults = $EPostService->searchByFULLTEXT("Test");
 if (!empty($searchResults)) {
-    echo "Search Results:\n";
+    echo "Search Results POSTS:\n";
     foreach ($searchResults as $result) {
         echo "ID: " . $result->getId() . ", Title: " .$result->getTitle() . ", Content: " . $result->getContent() . "\n";
     }
 } 
 else {
-    echo "No search results found.\n";
+    echo "No POSTS results found.\n";
 }   
 
-
+//Search User test
+$searchResults2 = $EUserService->searchByUsername("TestCrea");
+if (!empty($searchResults2)) {
+    echo "Search Results USERS:\n";
+    foreach ($searchResults2 as $result) {
+        echo "ID: " . $result->getId() . "\n";
+    }
+} 
+else {
+    echo "No USERS results found.\n";
+}  

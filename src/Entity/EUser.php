@@ -5,6 +5,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
+use App\Repository\EUserRepository;
+
 /*
 Important: By choosing "SINGLE_TABLE", Doctrine will
 manage the inheritance by storing all the attributes
@@ -14,8 +16,7 @@ A discriminator column is expected to save what kind
 of user is stored in the table.
 */
 
-
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: EUserRepository::class)]
 #[ORM\Table(name: "users")]
 #[ORM\InheritanceType('SINGLE_TABLE')]
 #[ORM\DiscriminatorColumn(name: 'dtype', type: 'string')]

@@ -5,8 +5,18 @@ use App\Entity\EUser;
 use App\Entity\ECreator;
 use App\Entity\EPost;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\EUserRepository;
 
 class EUserService extends AbstractBaseService {
+    protected EUserRepository $userRepository;
+
+    //  Override
+    public function __construct(EntityManagerInterface $entityManager, EUserRepository $userRepository) 
+    {
+        parent::__construct($entityManager, User::class);
+        $this->entityManager = $entityManager;
+        $this->userRepository = $userRepository;
+    }
 
     // Liking
     public function like(EUser $user, EPost $post): void{
@@ -69,7 +79,13 @@ class EUserService extends AbstractBaseService {
         return $this->getByPhonenumber($phoneNumber) !== null;
     }
 
-    
+    public function searchByUsername(string $searchQuery): array{
+        $cleanQuery = trim($searchQuery);
+        if (mb_strlen($cleanQuery) < 3) {
+            return [];
+        }
+        return $this->userRepository->searchByUsername($cleanQuery);
+    }
 
 
 }

@@ -7,7 +7,6 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class EPostService extends AbstractBaseService {
 
-    protected EntityManagerInterface $entityManager;
     protected EPostRepository $postRepository;
 
     //Constructor override to inject EPostRepository
@@ -18,7 +17,7 @@ class EPostService extends AbstractBaseService {
     }
 
     // Search posts by term using FULLTEXT search
-    public function findAffinedPosts(string $searchQuery): array{
+    public function searchByFULLTEXT(string $searchQuery): array{
         
         // Cleanup input query
         $cleanQuery = trim($searchQuery);
