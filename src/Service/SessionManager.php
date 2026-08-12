@@ -5,7 +5,7 @@ namespace App\Service;
  *  About the SessionManager:
  *  role = USER : Logged in user (or creator, moderator, etc.)        |       role = GUEST : obvious
  *  user_ID = (int|null) : Here goes the logged in user's ID.       |       null when GUEST 
- * 
+ *  currentUserAgent = (str) : Browser "fingerprint"
  * 
  *
  *  
@@ -99,6 +99,22 @@ class SessionManager {
     // Get user ID from session - null if not logged in
     public function getUserId(): ?int {
         return $_SESSION['user_id'] ?? null;
+    }
+
+    //Check if Cookies are enabled
+    public function areCookiesEnabled(): bool {
+        // Check if there are Cookies already -> They are enabled if yes
+        if (isset($_COOKIE[session_name()])) {
+            return true;
+        }
+
+        // Send a test cookie if it's the very first time 
+        if (!isset($_COOKIE['cookie_test'])) {
+            setcookie('cookie_test', '1', time() + 3600, '/');
+        }
+
+        //Return true/false based on the cookie's path
+        return isset($_COOKIE['cookie_test']);
     }
 
 }
